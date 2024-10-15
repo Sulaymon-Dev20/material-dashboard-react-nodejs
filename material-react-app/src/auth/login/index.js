@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
+import {useContext, useRef, useState} from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -27,18 +27,20 @@ import BasicLayoutLanding from "layouts/authentication/components/BasicLayoutLan
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
 import AuthService from "services/auth-service";
-import { AuthContext } from "context";
+import {AuthContext} from "context";
+import {ReCAPTCHA} from "react-google-recaptcha";
 
 function Login() {
   const authContext = useContext(AuthContext);
+  const recaptcha = useRef()
 
   const [user, setUser] = useState({});
   const [credentialsErros, setCredentialsError] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
 
   const [inputs, setInputs] = useState({
-    email: "admin@jsonapi.com",
-    password: "secret",
+    email: "sulaymon1w@gmail.com",
+    password: "1252273Uz",
   });
 
   const [errors, setErrors] = useState({
@@ -218,6 +220,8 @@ function Login() {
                 </MDTypography>
               </MDTypography>
             </MDBox>
+            <MDBox>
+              <ReCAPTCHA ref={recaptcha} sitekey={process.env.REACT_APP_SITE_KEY} />            </MDBox>
           </MDBox>
         </MDBox>
       </Card>
